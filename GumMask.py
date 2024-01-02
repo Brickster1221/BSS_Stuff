@@ -1,4 +1,4 @@
-#made by brickster1221 V0.1
+#made by brickster1221 V0.2
 import configparser
 import math
 config = configparser.ConfigParser()
