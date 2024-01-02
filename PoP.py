@@ -57,7 +57,6 @@ if 0 < turp + 25:
     turp += 25
     smoothies += 10*turp
     caustic += 10*turp
-    swirled += 10*turp
     star += 100*turp
     honeysuckles += 1000*turp
 
