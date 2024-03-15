@@ -73,8 +73,6 @@ if 0 <= Bextract:
     blueb += Bextract*50
     royal += Bextract*10
 
-if 0 < bean + 500:
-    bean += 500
 
 #prints
 print("")
