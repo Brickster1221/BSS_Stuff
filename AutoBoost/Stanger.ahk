@@ -24,31 +24,31 @@ IniRead, Mouse, Settings.ini, Settings, Mouse, Defailt1
 Gui, Add, Text, x20 y0 w250 h20, Slot  |  Time (ms)  |  Hotkey  |  ^ = CTRL
 Gui, Add, Text, x20 y25 w50 h20, Slot1:
 Gui, Add, Edit, x50 y20 w50 h20 vSlot1, %Slot1%
-Gui, Add, Text, x110 y25 w50 h20, Hotkey:
+Gui, Add, Text, x110 y25 w50 h20, Hotkey1:
 Gui, Add, Edit, x160 y20 w50 h20 vHotkey1, %Hotkey1%
 Gui, Add, Text, x20 y50 w50 h20, Slot2:
 Gui, Add, Edit, x50 y45 w50 h20 vSlot2, %Slot2%
-Gui, Add, Text, x110 y50 w50 h20, Hotkey:
+Gui, Add, Text, x110 y50 w50 h20, Hotkey2:
 Gui, Add, Edit, x160 y45 w50 h20 vHotkey2, %Hotkey2%
 Gui, Add, Text, x20 y75 w50 h20, Slot3:
 Gui, Add, Edit, x50 y70 w50 h20 vSlot3, %Slot3%
-Gui, Add, Text, x110 y75 w50 h20, Hotkey:
+Gui, Add, Text, x110 y75 w50 h20, Hotkey3:
 Gui, Add, Edit, x160 y70 w50 h20 vHotkey3, %Hotkey3%
 Gui, Add, Text, x20 y100 w50 h20, Slot4:
 Gui, Add, Edit, x50 y95 w50 h20 vSlot4, %Slot4%
-Gui, Add, Text, x110 y100 w50 h20, Hotkey:
+Gui, Add, Text, x110 y100 w50 h20, Hotkey4:
 Gui, Add, Edit, x160 y95 w50 h20 vHotkey4, %Hotkey4%
 Gui, Add, Text, x20 y125 w50 h20, Slot5:
 Gui, Add, Edit, x50 y120 w50 h20 vSlot5, %Slot5%
-Gui, Add, Text, x110 y125 w50 h20, Hotkey:
+Gui, Add, Text, x110 y125 w50 h20, Hotkey5:
 Gui, Add, Edit, x160 y120 w50 h20 vHotkey5, %Hotkey5%
 Gui, Add, Text, x20 y150 w50 h20, Slot6:
 Gui, Add, Edit, x50 y145 w50 h20 vSlot6, %Slot6%
-Gui, Add, Text, x110 y150 w50 h20, Hotkey:
+Gui, Add, Text, x110 y150 w50 h20, Hotkey6:
 Gui, Add, Edit, x160 y145 w50 h20 vHotkey6, %Hotkey6%
 Gui, Add, Text, x20 y175 w50 h20, Slot7:
 Gui, Add, Edit, x50 y170 w50 h20 vSlot7, %Slot7%
-Gui, Add, Text, x110 y175 w50 h20, Hotkey:
+Gui, Add, Text, x110 y175 w50 h20, Hotkey7:
 Gui, Add, Edit, x160 y170 w50 h20 vHotkey7, %Hotkey7%
 
 Gui, Add, Button, x20 y200 w100 h30 gButtonClick, Save
