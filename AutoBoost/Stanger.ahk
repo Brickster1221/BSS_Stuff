@@ -95,7 +95,7 @@ RunningMouse := False
 
 
 ^t::  ;base keybind, all functions are toggled timers
-    TimMouse()
+    TimMouse(Mouse) ; Hold Left Mouse check
 
     TimFunc1(Slot1)
     TimFunc2(Slot2)
@@ -107,14 +107,15 @@ RunningMouse := False
 return
 
 
-TimMouse() {
+TimMouse(Mouse) {
     if RunningMouse {
         SetTimer, Mouse, Off
         RunningMouse := false
     } else {
-        if (Slot1 != 0) {
+        if (Mouse) {
+            MsgBox, Click
             Click, Down
-            SetTimer, Mouse, 10000 ; will click mouse every 10 seconds
+            SetTimer, Mouse, 5000 ; will click mouse every 5 seconds
             RunningMouse := true
         }
     }
