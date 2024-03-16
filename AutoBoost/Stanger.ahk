@@ -59,7 +59,6 @@ Gui +AlwaysOnTop
 Gui, Show, w225 h235, Boosting Macro
 
 
-
 ButtonClick: ; saves the Values to inventory.ini
     Gui, Submit, NoHide
     Saveinput(Slot1, "Slot1")
@@ -106,16 +105,11 @@ RunningMouse := False
     TimFunc1(Slot1)
     TimFunc2(Slot2)
     TimFunc3(Slot3)
-
+    TimFunc4(Slot4)
     TimFunc5(Slot5)
     TimFunc6(Slot6)
     TimFunc7(Slot7)
 return
-
-^g::
-    TimFunc4(Slot4)
-return
-
 
 TimMouse(Mouse) {
     if RunningMouse {
