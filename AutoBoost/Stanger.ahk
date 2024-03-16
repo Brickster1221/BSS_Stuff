@@ -22,6 +22,7 @@ IniRead, Mouse, Settings.ini, Settings, Mouse, Defailt1
 
 ; makes the gui
 Gui, Add, Text, x20 y0 w250 h20, Slot  |  Time (ms)  |  Hotkey  |  ^ = CTRL
+Gui, Add, Button, x210 y0 w12 h15 gHelpButton, ?
 Gui, Add, Text, x20 y25 w50 h20, Slot1:
 Gui, Add, Edit, x50 y20 w50 h20 vSlot1, %Slot1%
 Gui, Add, Text, x110 y25 w50 h20, Hotkey1:
@@ -58,6 +59,7 @@ Gui +AlwaysOnTop
 Gui, Show, w225 h235, Boosting Macro
 
 
+
 ButtonClick: ; saves the Values to inventory.ini
     Gui, Submit, NoHide
     Saveinput(Slot1, "Slot1")
@@ -68,6 +70,10 @@ ButtonClick: ; saves the Values to inventory.ini
     Saveinput(Slot6, "Slot6")  
     Saveinput(Slot7, "Slot7") 
     Iniwrite, %Mouse%, Settings.ini, Settings, Mouse
+return
+
+HelpButton:
+    MsgBox, 0x40000, Information, Timers are a toggle, meaning once you press a hotkey for a certain slot, it will keep repeating that slot with a delay of the number you set, up until you press they keybind again.`n`nSimple Hotkey Symbols`n# = Windows key`n! = Alt key`n^ = Ctrl key`n+ = Shift key  
 return
 
 Saveinput(val, Name) {
@@ -94,16 +100,20 @@ Running7 := false
 RunningMouse := False
 
 
-^t::  ;base keybind, all functions are toggled timers
+^t::  ;base keybind, all functions are toggled timers, meaning once you press it, it will repeat forever, then stop once pressed again
     TimMouse(Mouse) ; Hold Left Mouse check
 
     TimFunc1(Slot1)
     TimFunc2(Slot2)
     TimFunc3(Slot3)
-    TimFunc4(Slot4)
+
     TimFunc5(Slot5)
     TimFunc6(Slot6)
     TimFunc7(Slot7)
+return
+
+^g::
+    TimFunc4(Slot4)
 return
 
 
@@ -115,7 +125,7 @@ TimMouse(Mouse) {
         if (Mouse) {
             MsgBox, Click
             Click, Down
-            SetTimer, Mouse, 5000 ; will click mouse every 5 seconds
+            SetTimer, Mouse, 1000 ; will click mouse every 5 seconds
             RunningMouse := true
         }
     }
@@ -133,6 +143,7 @@ TimFunc1(Slot1) {
         }
     }
 }
+
 TimFunc2(Slot2) {
     if Running2 {
         SetTimer, Timer2, Off
@@ -145,6 +156,7 @@ TimFunc2(Slot2) {
         }
     }
 }
+
 TimFunc3(Slot3) {
     if Running3 {
         SetTimer, Timer3, Off
@@ -157,6 +169,7 @@ TimFunc3(Slot3) {
         }
     }
 }
+
 TimFunc4(Slot4) {
     if Running4 {
         SetTimer, Timer4, Off
@@ -169,6 +182,7 @@ TimFunc4(Slot4) {
         }
     }
 }
+
 TimFunc5(Slot5) {
     if Running5 {
         SetTimer, Timer5, Off
@@ -180,8 +194,8 @@ TimFunc5(Slot5) {
             Running5 := true
         }
     }
-
 }
+
 TimFunc6(Slot6) {
     if Running6 {
         SetTimer, Timer6, Off
@@ -194,6 +208,7 @@ TimFunc6(Slot6) {
         }
     }
 }
+
 TimFunc7(Slot7) {
     if Running7 {
         SetTimer, Timer7, Off
