@@ -84,129 +84,158 @@ GuiClose:
 return
 
 ; Timer FUNNN!!!!
-Timer1 := false
-Timer2 := false
-Timer3 := false
-Timer4 := false
-Timer5 := false
-Timer6 := false
-Timer7 := false
-TimerMouse := False
+Running1 := false
+Running2 := false
+Running3 := false
+Running4 := false
+Running5 := false
+Running6 := false
+Running7 := false
+RunningMouse := False
 
 
-^t::
-    if TimerMouse {
+^t::  ;base keybind, all functions are toggled timers
+    TimMouse()
+
+    TimFunc1(Slot1)
+    TimFunc2(Slot2)
+    TimFunc3(Slot3)
+    TimFunc4(Slot4)
+    TimFunc5(Slot5)
+    TimFunc6(Slot6)
+    TimFunc7(Slot7)
+return
+
+
+TimMouse() {
+    if RunningMouse {
         SetTimer, Mouse, Off
-        TimerMouse := false
+        RunningMouse := false
     } else {
         if (Slot1 != 0) {
             Click, Down
             SetTimer, Mouse, 10000 ; will click mouse every 10 seconds
-            TimerMouse := true
+            RunningMouse := true
         }
     }
+}
 
-    if Timer1 {
-        SetTimer, Slot1, Off
-        Timer1 := false
+TimFunc1(Slot1) {
+    if Running1 {
+        SetTimer, Timer1, Off
+        Running1 := false
     } else {
         if (Slot1 != 0) {
             Send, 1
-            SetTimer, Slot1, %Slot1%
-            Timer1 := true
+            SetTimer, Timer1, %Slot1%
+            Running1 := true
         }
     }
-    if Timer2 {
-        SetTimer, Slot2, Off
-        Timer2 := false
+}
+TimFunc2(Slot2) {
+    if Running2 {
+        SetTimer, Timer2, Off
+        Running2 := false
     } else {
         if (Slot2 != 0) {
             Send, 2
-            SetTimer, Slot2, %Slot2%
-            Timer2 := true
+            SetTimer, Timer2, %Slot2%
+            Running2 := true
         }
     }
-    if Timer3 {
-        SetTimer, Slot3, Off
-        Timer3 := false
+}
+TimFunc3(Slot3) {
+    if Running3 {
+        SetTimer, Timer3, Off
+        Running3 := false
     } else {
         if (Slot3 != 0) {
             Send, 3
-            SetTimer, Slot3, %Slot3%
-            Timer3 := true
+            SetTimer, Timer3, %Slot3%
+            Running3 := true
         }
     }
-    if Timer4 {
-        SetTimer, Slot4, Off
-        Timer4 := false
+}
+TimFunc4(Slot4) {
+    if Running4 {
+        SetTimer, Timer4, Off
+        Running4 := false
     } else {
         if (Slot4 != 0) {
             Send, 4
-            SetTimer, Slot4, %Slot4%
-            Timer4 := true
+            SetTimer, Timer4, %Slot4%
+            Running4 := true
         }
     }
-    if Timer5 {
-        SetTimer, Slot5, Off
-        Timer5 := false
+}
+TimFunc5(Slot5) {
+    if Running5 {
+        SetTimer, Timer5, Off
+        Running5 := false
     } else {
         if (Slot5 != 0) {
             Send, 5
-            SetTimer, Slot5, %Slot5%
-            Timer5 := true
+            SetTimer, Timer5, %Slot5%
+            Running5 := true
         }
     }
-    if Timer6 {
-        SetTimer, Slot6, Off
-        Timer6 := false
+
+}
+TimFunc6(Slot6) {
+    if Running6 {
+        SetTimer, Timer6, Off
+        Running6 := false
     } else {
         if (Slot6 != 0) {
             Send, 6
-            SetTimer, Slot6, %Slot6%
-            Timer6 := true
+            SetTimer, Timer6, %Slot6%
+            Running6 := true
         }
     }
-    if Timer7 {
-        SetTimer, Slot7, Off
-        Timer7 := false
+}
+TimFunc7(Slot7) {
+    if Running7 {
+        SetTimer, Timer7, Off
+        Running7 := false
     } else {
         if (Slot7 != 0) {
             Send, 7
-            SetTimer, Slot7, %Slot7%
-            Timer7 := true
+            SetTimer, Timer7, %Slot7%
+            Running7 := true
         }
     }
-return
+}
+
 
 Mouse:
 Click, Down
 return
 
-Slot1:
+Timer1:
 Send, 1
 return
 
-Slot2:
+Timer2:
 Send, 2
 return
 
-Slot3:
+Timer3:
 Send, 3
 return
 
-Slot4:
+Timer4:
 Send, 4
 return
 
-Slot5:
+Timer5:
 Send, 5
 return
 
-Slot6:
+Timer6:
 Send, 6
 return
 
-Slot7:
+Timer7:
 Send, 7
 return
 
