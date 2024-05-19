@@ -118,7 +118,7 @@ TimMouse(Mouse) {
     } else {
         if (Mouse) {
             Click, Down
-            SetTimer, Mouse, 1000 ; will click mouse every 5 seconds
+            SetTimer, Mouse, 5000 ; will click mouse every 5 seconds
             RunningMouse := true
         }
     }
