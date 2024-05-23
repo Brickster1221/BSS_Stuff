@@ -121,7 +121,9 @@ if purp > 0:
     print("")
 
 if glue > 0:
-    print(f"You need {glue} Glue, needing {gumdrops} more gumdrops")
+    if gumdrops < 0:
+        print(f"You need {glue} Glue, needing {gumdrops} more gumdrops")
+    
     print(f"If you do glue dispenser every day, youll get this in at most {math.ceil(glue/5*22/24)} days")
     tickets = math.ceil((glue*50)/3)
     print(f"You can buy that with {tickets} tickets or {gumdrops*3} Strawberries, Blueberries, and Pineapples TOTAL")
