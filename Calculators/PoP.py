@@ -84,6 +84,7 @@ if 0 <= purp:
     Rextract += purp*3
     Bextract += purp*3
     glue += purp*3
+    neon += purp*3
 
 if 0 <= glue:
     gumdrops += glue*50
