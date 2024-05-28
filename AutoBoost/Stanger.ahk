@@ -72,7 +72,7 @@ ButtonClick: ; saves the Values to inventory.ini
 return
 
 HelpButton:
-    MsgBox, 0x40000, Information, Timers are a toggle, meaning once you press a hotkey for a certain slot, it will keep repeating that slot with a delay of the number you set, up until you press they keybind again.`n`nSimple Hotkey Symbols`n# = Windows key`n! = Alt key`n^ = Ctrl key`n+ = Shift key  
+    MsgBox, 0x40000, Information, Timers are a toggle, meaning once you press a hotkey for a certain slot, it will keep repeating that slot with a delay of the number you set, up until you press they keybind again.`n`nSimple Hotkey Symbols`n# = Windows key`n! = Alt key`n^ = Ctrl key`n+ = Shift key`n`nMade by brickster1221  
 return
 
 Saveinput(val, Name) {
