@@ -1,10 +1,6 @@
 #made by brickster1221 V0.2
 #To use values, update Inventory.ini
 
-#from discordwebhook import Discord
-#discord = Discord(url="https://discord.com/api/webhooks/1036490633336062013/uUMnif8Lom-4qt_s3IyHSrNHBkHvEp8R59NEjPPNxb-MUxA4MgODgODjGY7UjtS4cFUo")
-#discord.post(content="Omg someone actually uesd my PoP calculatr")
-
 import configparser
 import math
 config = configparser.ConfigParser()
