@@ -88,17 +88,17 @@ TimMouse(Mouse) {
 
 ToggleTimer(index) {
     global
-    Slot := Slot%index%  ; Retrieve the slot value dynamically
-    Running := Running%index%  ; Retrieve the running state dynamically
+    Slot := Slot%index%
+    Running := Running%index%
 
     if (Running) {
         SetTimer, % "Timer" . index, Off
-        Running%index% := false  ; Update the global variable
+        Running%index% := false
     } else {
         if (Slot != 0) {
             Send, %index%
             SetTimer, % "Timer" . index, %Slot%
-            Running%index% := true  ; Update the global variable
+            Running%index% := true
         }
     }
 }
