@@ -4,71 +4,37 @@
 #SingleInstance Force
 
 ; grabs all the values from inventory.ini
-IniRead, Slot1, Settings.ini, Settings, Slot1, Default1
-IniRead, Slot2, Settings.ini, Settings, Slot2, Default1
-IniRead, Slot3, Settings.ini, Settings, Slot3, Default1
-IniRead, Slot4, Settings.ini, Settings, Slot4, Default1
-IniRead, Slot5, Settings.ini, Settings, Slot5, Default1
-IniRead, Slot6, Settings.ini, Settings, Slot6, Default1
-IniRead, Slot7, Settings.ini, Settings, Slot7, Default1
-IniRead, Hotkey1, Settings.ini, Settings, Hotkey1, Default1
-IniRead, Hotkey2, Settings.ini, Settings, Hotkey2, Default1
-IniRead, Hotkey3, Settings.ini, Settings, Hotkey3, Default1
-IniRead, Hotkey4, Settings.ini, Settings, Hotkey4, Default1
-IniRead, Hotkey5, Settings.ini, Settings, Hotkey5, Default1
-IniRead, Hotkey6, Settings.ini, Settings, Hotkey6, Default1
-IniRead, Hotkey7, Settings.ini, Settings, Hotkey7, Default1
-IniRead, Mouse, Settings.ini, Settings, Mouse, Defailt1
+Loop, 7 {
+    IniRead, Slot%A_Index%, Settings.ini, Settings, Slot%A_Index%, 0
+    IniRead, Hotkey%A_Index%, Settings.ini, Settings, Hotkey%A_Index%, Default%A_Index%
+}
+IniRead, Mouse, Settings.ini, Settings, Mouse, Default1
 
-; makes the gui
-Gui, Add, Text, x20 y0 w250 h20, Slot  |  Time (ms)  |  Hotkey  |  ^ = CTRL
-Gui, Add, Button, x210 y0 w12 h15 gHelpButton, ?
-Gui, Add, Text, x20 y25 w50 h20, Slot1:
-Gui, Add, Edit, x50 y20 w50 h20 vSlot1, %Slot1%
-Gui, Add, Text, x110 y25 w50 h20, Hotkey1:
-Gui, Add, Edit, x160 y20 w50 h20 vHotkey1, %Hotkey1%
-Gui, Add, Text, x20 y50 w50 h20, Slot2:
-Gui, Add, Edit, x50 y45 w50 h20 vSlot2, %Slot2%
-Gui, Add, Text, x110 y50 w50 h20, Hotkey2:
-Gui, Add, Edit, x160 y45 w50 h20 vHotkey2, %Hotkey2%
-Gui, Add, Text, x20 y75 w50 h20, Slot3:
-Gui, Add, Edit, x50 y70 w50 h20 vSlot3, %Slot3%
-Gui, Add, Text, x110 y75 w50 h20, Hotkey3:
-Gui, Add, Edit, x160 y70 w50 h20 vHotkey3, %Hotkey3%
-Gui, Add, Text, x20 y100 w50 h20, Slot4:
-Gui, Add, Edit, x50 y95 w50 h20 vSlot4, %Slot4%
-Gui, Add, Text, x110 y100 w50 h20, Hotkey4:
-Gui, Add, Edit, x160 y95 w50 h20 vHotkey4, %Hotkey4%
-Gui, Add, Text, x20 y125 w50 h20, Slot5:
-Gui, Add, Edit, x50 y120 w50 h20 vSlot5, %Slot5%
-Gui, Add, Text, x110 y125 w50 h20, Hotkey5:
-Gui, Add, Edit, x160 y120 w50 h20 vHotkey5, %Hotkey5%
-Gui, Add, Text, x20 y150 w50 h20, Slot6:
-Gui, Add, Edit, x50 y145 w50 h20 vSlot6, %Slot6%
-Gui, Add, Text, x110 y150 w50 h20, Hotkey6:
-Gui, Add, Edit, x160 y145 w50 h20 vHotkey6, %Hotkey6%
-Gui, Add, Text, x20 y175 w50 h20, Slot7:
-Gui, Add, Edit, x50 y170 w50 h20 vSlot7, %Slot7%
-Gui, Add, Text, x110 y175 w50 h20, Hotkey7:
-Gui, Add, Edit, x160 y170 w50 h20 vHotkey7, %Hotkey7%
+; makes the GUI
+Gui, Add, Text, x10 y0 w250 h20, Slot  |  Time (ms)  |  Hotkey  |  ^ = CTRL
+Gui, Add, Button, x200 y0 w12 h15 gHelpButton, ?
+Loop, 7 {
+    yPos := 20 + (A_Index - 1) * 25
+    Gui, Add, Text, x10 y%yPos% w50 h20, Slot%A_Index%:
+    Gui, Add, Edit, x40 y%yPos% w50 h20 vSlot%A_Index%, % Slot%A_Index%
+    Gui, Add, Text, x100 y%yPos% w50 h20, Hotkey%A_Index%:
+    Gui, Add, Edit, x150 y%yPos% w50 h20 vHotkey%A_Index%, % Hotkey%A_Index%
+}
 
-Gui, Add, Button, x20 y200 w100 h30 gButtonClick, Save
-Gui, Add, Text, x125 y200 W100 h30 , CTRL + Q to stop
-Gui, Add, checkbox, x125 y213 w100 h20 vMouse checked%Mouse%, Hold Left Mouse
+Gui, Add, Button, x10 y200 w100 h30 gButtonClick, Save
+Gui, Add, Text, x115 y200 W100 h30 , CTRL + Q to stop
+Gui, Add, Checkbox, x115 y213 w100 h20 vMouse checked%Mouse%, Hold Left Mouse
 Gui +AlwaysOnTop
-Gui, Show, w225 h235, Boosting Macro
+Gui, Show, w215 h235, Boosting Macro
 
 
-ButtonClick: ; saves the Values to inventory.ini
+ButtonClick:
     Gui, Submit, NoHide
-    Saveinput(Slot1, "Slot1")
-    Saveinput(Slot2, "Slot2")  
-    Saveinput(Slot3, "Slot3")  
-    Saveinput(Slot4, "Slot4")  
-    Saveinput(Slot5, "Slot5")  
-    Saveinput(Slot6, "Slot6")  
-    Saveinput(Slot7, "Slot7") 
-    Iniwrite, %Mouse%, Settings.ini, Settings, Mouse
+    Loop, 7 {
+        IniWrite, % Slot%A_Index%, Settings.ini, Settings, Slot%A_Index%
+        IniWrite, % Hotkey%A_Index%, Settings.ini, Settings, Hotkey%A_Index%
+    }
+    IniWrite, %Mouse%, Settings.ini, Settings, Mouse
 return
 
 HelpButton:
@@ -89,26 +55,22 @@ GuiClose:
 return
 
 ; Timer FUNNN!!!!
-Running1 := false
-Running2 := false
-Running3 := false
-Running4 := false
-Running5 := false
-Running6 := false
-Running7 := false
+Loop, 7 {
+    Running%A_Index% := false
+}
 RunningMouse := False
 
 
 ^t::  ;base keybind, all functions are toggled timers, meaning once you press it, it will repeat forever, then stop once pressed again
     TimMouse(Mouse) ; Hold Left Mouse check
 
-    TimFunc1(Slot1)
-    TimFunc2(Slot2)
-    TimFunc3(Slot3)
-    TimFunc4(Slot4)
-    TimFunc5(Slot5)
-    TimFunc6(Slot6)
-    TimFunc7(Slot7)
+    ToggleTimer(1)
+    ToggleTimer(2)
+    ToggleTimer(3)
+    ToggleTimer(4)
+    ToggleTimer(5)
+    ToggleTimer(6)
+    ToggleTimer(7)
 return
 
 TimMouse(Mouse) {
@@ -124,97 +86,22 @@ TimMouse(Mouse) {
     }
 }
 
-TimFunc1(Slot1) {
-    if Running1 {
-        SetTimer, Timer1, Off
-        Running1 := false
+ToggleTimer(index) {
+    global
+    Slot := Slot%index%  ; Retrieve the slot value dynamically
+    Running := Running%index%  ; Retrieve the running state dynamically
+
+    if (Running) {
+        SetTimer, % "Timer" . index, Off
+        Running%index% := false  ; Update the global variable
     } else {
-        if (Slot1 != 0) {
-            Send, 1
-            SetTimer, Timer1, %Slot1%
-            Running1 := true
+        if (Slot != 0) {
+            Send, %index%
+            SetTimer, % "Timer" . index, %Slot%
+            Running%index% := true  ; Update the global variable
         }
     }
 }
-
-TimFunc2(Slot2) {
-    if Running2 {
-        SetTimer, Timer2, Off
-        Running2 := false
-    } else {
-        if (Slot2 != 0) {
-            Send, 2
-            SetTimer, Timer2, %Slot2%
-            Running2 := true
-        }
-    }
-}
-
-TimFunc3(Slot3) {
-    if Running3 {
-        SetTimer, Timer3, Off
-        Running3 := false
-    } else {
-        if (Slot3 != 0) {
-            Send, 3
-            SetTimer, Timer3, %Slot3%
-            Running3 := true
-        }
-    }
-}
-
-TimFunc4(Slot4) {
-    if Running4 {
-        SetTimer, Timer4, Off
-        Running4 := false
-    } else {
-        if (Slot4 != 0) {
-            Send, 4
-            SetTimer, Timer4, %Slot4%
-            Running4 := true
-        }
-    }
-}
-
-TimFunc5(Slot5) {
-    if Running5 {
-        SetTimer, Timer5, Off
-        Running5 := false
-    } else {
-        if (Slot5 != 0) {
-            Send, 5
-            SetTimer, Timer5, %Slot5%
-            Running5 := true
-        }
-    }
-}
-
-TimFunc6(Slot6) {
-    if Running6 {
-        SetTimer, Timer6, Off
-        Running6 := false
-    } else {
-        if (Slot6 != 0) {
-            Send, 6
-            SetTimer, Timer6, %Slot6%
-            Running6 := true
-        }
-    }
-}
-
-TimFunc7(Slot7) {
-    if Running7 {
-        SetTimer, Timer7, Off
-        Running7 := false
-    } else {
-        if (Slot7 != 0) {
-            Send, 7
-            SetTimer, Timer7, %Slot7%
-            Running7 := true
-        }
-    }
-}
-
 
 Mouse:
 Click, Down
