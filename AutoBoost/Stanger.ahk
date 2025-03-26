@@ -3,12 +3,26 @@
 #NoEnv
 #SingleInstance Force
 
+HotkeyAction := {}
 ; grabs all the values from inventory.ini
 Loop, 7 {
     IniRead, Slot%A_Index%, Settings.ini, Settings, Slot%A_Index%, 0
-    IniRead, Hotkey%A_Index%, Settings.ini, Settings, Hotkey%A_Index%, Default%A_Index%
+    IniRead, HK, Settings.ini, Settings, Hotkey%A_Index%, %A_Space%
+
+    HK := Trim(HK)
+    if !HK
+        continue
+
+    if !HotkeyAction.HasKey(HK)
+        HotkeyAction[HK] := []
+    HotkeyAction[HK].Push(A_Index)
+    Hotkey%A_Index% := HK
 }
-IniRead, Mouse, Settings.ini, Settings, Mouse, Default1
+
+for combo, actions in HotkeyAction
+    Hotkey, %combo%, HandleHotkey
+
+IniRead, Mouse, Settings.ini, Settings, Mouse, 1
 
 ; makes the GUI
 Gui, Add, Text, x10 y0 w250 h20, Slot  |  Time (ms)  |  Hotkey  |  ^ = CTRL
@@ -60,18 +74,11 @@ Loop, 7 {
 }
 RunningMouse := False
 
-
-^t::  ;base keybind, all functions are toggled timers, meaning once you press it, it will repeat forever, then stop once pressed again
-    TimMouse(Mouse) ; Hold Left Mouse check
-
-    ToggleTimer(1)
-    ToggleTimer(2)
-    ToggleTimer(3)
-    ToggleTimer(4)
-    ToggleTimer(5)
-    ToggleTimer(6)
-    ToggleTimer(7)
-return
+HandleHotkey:
+CurHotkey := A_ThisHotkey
+for _, action in HotkeyAction[CurHotkey]
+    ToggleTimer(action)
+Return
 
 TimMouse(Mouse) {
     if RunningMouse {
